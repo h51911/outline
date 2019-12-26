@@ -132,7 +132,8 @@ import的引入方式
         * 类组件（状态组件，非受控组件、容器组件）
             * state
                 * 获取: this.state.xxx
-                * 修改:
+                * 修改: this.setState()
+                    > 覆盖原有数据
 
     * 通讯
         * 父->子: props
@@ -140,6 +141,10 @@ import的引入方式
             2. 使用
                 * 函数组件:函数的第一个参数
                 * 类组件
+        * 子->父: 把父组件函数传递到子组件执行
+        * 深层次组件
+            * 逐层传递(不推荐,繁琐)
+
 
 
 * 列表渲染(循环)
@@ -164,6 +169,25 @@ import的引入方式
 * 案例:todolist
     > 谁的数据谁修改的原则
     * 查:数据展示
-    * 增:添加数据
-    * 删:
-    * 改:
+    * 增:添加数据   
+    * 删:删除数据
+    * 改:改变数据
+
+
+* webpack 项目构建工具
+    * gulp: 基于步骤的构建工具
+    ```js
+        gulp.task('compileEs6',()=>{
+            return gulp.src('./src/js/*.js')
+            .pipe(concat('all.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest('./dist'))
+        })
+    ```
+    * webpack: 基于配置的构建工具
+        > webpack.config.js, 是一个commonjs规范的模块
+        * 配置项
+            * entry
+            * output
+            * 加载器loader
+            * 插件plugin

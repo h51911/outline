@@ -9,6 +9,7 @@ class TodoList extends Component{
         super();
 
         this.state = {
+            checkedAll:false,
             datalist: [
                 {
                     id: Date.now(),
@@ -33,6 +34,10 @@ class TodoList extends Component{
 
         // 在初始化是改变this指向(推荐)
         this.addItem = this.addItem.bind(this);
+        this.removeItem = this.removeItem.bind(this);
+        this.completeItem = this.completeItem.bind(this);
+        this.selecteItem = this.selecteItem.bind(this);
+        this.selectedAll = this.selectedAll.bind(this);
     }
 
     // 自定义方法
@@ -57,6 +62,46 @@ class TodoList extends Component{
             datalist
         })
     }
+    removeItem(id){
+        let datalist = this.state.datalist.filter(item=>item.id!==id);
+        this.setState({
+            datalist
+        })
+    }
+    completeItem(id){
+        let datalist = this.state.datalist.map(item=>{
+            if(item.id === id){
+                item.done = true;
+            }
+            return item;
+        })
+        this.setState({
+            datalist
+        })
+    }
+    selecteItem(id){
+        let datalist = this.state.datalist.map(item=>{
+            if(item.id === id){
+                item.selected = !item.selected;
+            }
+            return item;
+        })
+        this.setState({
+            datalist,
+            checkedAll:datalist.every(item=>item.selected)
+        });
+    }
+    selectedAll(){
+        let checkedAll = !this.state.checkedAll;
+        let datalist = this.state.datalist.map(item=>{
+            item.selected = checkedAll;
+            return item;
+        })
+        this.setState({
+            checkedAll,
+            datalist
+        });
+    }
 
     render(){
         // 在这里如何获取state数据
@@ -65,7 +110,14 @@ class TodoList extends Component{
         return (
             <div>
                 <TodoForm addItem={this.addItem}></TodoForm>
-                <TodoContent datalist={this.state.datalist}></TodoContent>
+                <TodoContent 
+                datalist={this.state.datalist}
+                removeItem={this.removeItem}
+                completeItem={this.completeItem}
+                selecteItem={this.selecteItem}
+                checkedAll={this.state.checkedAll}
+                selectedAll={this.selectedAll}
+                ></TodoContent>
             </div>
         )
     }
