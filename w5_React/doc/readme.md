@@ -96,3 +96,74 @@ import的引入方式
 
 
     PS: 尽量使用函数组件（能用函数组件就用函数组件，实在不行才用类组件）
+
+
+## day5-4
+
+### 面试题
+* 为什么在React组件中必须引入React：因为JSX
+
+### 复习
+* webApp: react + react-dom
+* nativeApp : react + react-native
+
+* 渲染：ReactDOM.render(content,target)
+    * content： React.createElement(type,props,children)
+* JSX : javascript xml
+    * 限制
+        * html属性不能使用js关键字
+            * class -> className
+            * for   -> htmlFor
+            * ...
+        * 属性必须使用驼峰
+            * onkeyup -> onKeyUp
+            * ....
+        * 标签要闭合
+        * style属性必须为对象
+            * css属性必须为驼峰
+            ```css
+                style={{color:'#58bc58',fontSize:'20px'}}
+            ```
+        * {}内必须为js表达式
+
+* 组件
+    * 定义
+        * 函数组件（无状态组件、受控组件、UI组件）
+        * 类组件（状态组件，非受控组件、容器组件）
+            * state
+                * 获取: this.state.xxx
+                * 修改:
+
+    * 通讯
+        * 父->子: props
+            1. 设置属性
+            2. 使用
+                * 函数组件:函数的第一个参数
+                * 类组件
+
+
+* 列表渲染(循环)
+    * key:唯一且稳定
+* 事件
+    * this指向
+        * bind改变this指向(注意:只会在第一次生效)
+    * event
+        * target
+    * 传参
+        bind(this,xxx)
+* refs
+    * 字符串:不推荐
+    ```js
+        <input ref="title"/>
+    ```
+    * 回调 Refs (推荐)
+    ```js
+        <input ref={el=>this.title=el}/>
+    ```
+
+* 案例:todolist
+    > 谁的数据谁修改的原则
+    * 查:数据展示
+    * 增:添加数据
+    * 删:
+    * 改:

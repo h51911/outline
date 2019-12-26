@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 // }
 // let myStyle = {width:100}
 
-ReactDOM.render(
+render(
     // 组件
     <App/>
 

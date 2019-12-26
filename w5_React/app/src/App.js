@@ -1,5 +1,5 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
+import TodoList from './components/TodoList'
 import './App.css';
 
 // function App() {
@@ -30,7 +30,9 @@ import './App.css';
 //   )
 // }
 
-class App extends React.Component{
+
+
+class App extends Component{
   constructor(){
     super();//Parent.call(this)
     // 调用super后才拥有自己的this
@@ -43,7 +45,9 @@ class App extends React.Component{
   render(){
     return (
       <div>
-        <img src="/img/jingjing.png"/>
+        {/* <img src="/img/jingjing.png"/> */}
+
+        <TodoList/>
       </div>
     )
   }
