@@ -191,3 +191,86 @@ import的引入方式
             * output
             * 加载器loader
             * 插件plugin
+
+
+## day5-5
+
+### 面试题
+* webpack与gulp的区别
+* webpack的工作原理
+
+### 复习
+* 组件通讯
+    * 父->子: props
+        1. 设置子组件的属性,并传递父组件数据
+        2. 使用props
+            * 函数组件: 函数的第一个参数
+            * 类组件:
+                * constructor第一个参数
+                * this.props
+    * 子->父: 利用props把父组件函数传入子组件执行
+    * 深层次组件传参
+        * 逐层传递
+        * context
+* webpack
+    > webpack的工作原理
+    * 配置参数
+        * entry
+        * output
+        * devServer
+        * loader: module.rules
+            * babel-loader
+        * plugins
+            * html-webpack-plugin
+* 事件
+    * this指向: fn.bind(this)
+    * event: 事件处理函数的最后一个参数
+    * 传参: fn.bind(this,xxx)
+
+* refs
+    * 推荐:ref={(el)=>{this.username=el}}
+    * React.createRef()
+    ```js
+        this.title = React.createRef();
+        <input ref={this.title}>
+
+        // 获取节点
+        this.title.current;
+    ```
+* 列表循环
+    * map
+    * filter
+
+
+### 知识点
+* 深层次组件传参:Context
+    >某个组件只要往自己的 context 里面放了某些数据，这个组件之下的所有子组件都直接访问这个数据
+    * 使用步骤
+        1. 创建一个Contentx
+            ```js
+                const MyContext = React.createContext('默认值');
+            ```
+        2. 父组件利用Provider共享数据
+            ```js
+                <MyContext.Provider value={{removeItem,completeItem}}></MyContext.Provider>
+            ```
+        3. 子组件获取数据
+            * 类组件
+                ```js
+                    // 定义contextType
+                    TodoItem.contextType = MyContext;
+
+                    this.context.removeItem
+                ```
+            * 类组件或函数组件
+            ```js
+                <MyContext.Consumer>
+                {
+                    (value)=>{
+                        // 在这里获取共享的数据
+                    }
+                }
+                </MyContext.Consumer>
+            ```
+
+    

@@ -24,9 +24,9 @@ function TodoContent(props){
                         key={item.id} 
                         data={item} 
                         idx={idx}
-                        removeItem={props.removeItem}
-                        completeItem={props.completeItem}
-                        selecteItem={props.selecteItem}
+                        // removeItem={props.removeItem}
+                        // completeItem={props.completeItem}
+                        // selecteItem={props.selecteItem}
                         />
                     })
                     // [<TodoItem/>,<TodoItem/>,<TodoItem/>,<TodoItem/>]
