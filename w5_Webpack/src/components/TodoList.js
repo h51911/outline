@@ -42,6 +42,15 @@ class TodoList extends Component{
         this.selectedAll = this.selectedAll.bind(this);
     }
 
+    // 静态属性(目前浏览器不支持,或使用babel插件:@babel/plugin-proposal-class-properties)
+    // static defaultProps = {
+    //     name: 'laoxie'
+    // }
+    // // 静态方法
+    // static say(){
+
+    // }
+
     // 自定义方法
     // 在这里写的方法,会自动称为原型的方法
     addItem(title){console.log('title',title)
@@ -126,6 +135,8 @@ class TodoList extends Component{
         )
     }
 }
+
+console.dir(TodoList)
 
 // 往模块对象中添加default属性
 export default TodoList;

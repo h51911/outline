@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import TodoItem from './TodoItem'
 // 往模块对象中添加TodoList属性
 function TodoContent(props){
@@ -36,6 +38,16 @@ function TodoContent(props){
             <div>总数:{props.datalist.length}, 完成:{props.datalist.filter(item=>item.done).length}, 未完成:{props.datalist.filter(item=>!item.done).length}</div>
         </>
     )
+}
+
+// 校验props传入的数据类型
+TodoContent.propTypes = {
+    datalist:PropTypes.array.isRequired
+}
+
+// 设置props默认值
+TodoContent.defaultProps = {
+    datalist:[]
 }
 
 // 往模块对象中添加default属性

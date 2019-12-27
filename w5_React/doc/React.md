@@ -511,7 +511,7 @@ React 为每个状态都提供了两种声明周期函数，will 函数在进入
     * 当组件 shouldComponentUpdate 返回 true 且接收到新的props或者state但还没有render时被调用
     * 或者调用 forceUpdate 时将触发此函数
 
-* componentDidUpdate(nextProps, nextState)
+* componentDidUpdate(prevProps, prevState)
     >在组件完成更新后立即调用。在初始化时不会被调用。
 
     * 在此处是做这些事情的好时机：

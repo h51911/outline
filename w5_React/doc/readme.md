@@ -198,6 +198,7 @@ import的引入方式
 ### 面试题
 * webpack与gulp的区别
 * webpack的工作原理
+* 在组件中设置一个定时器,组件销毁后,定时器是否还在
 
 ### 复习
 * 组件通讯
@@ -272,5 +273,45 @@ import的引入方式
                 }
                 </MyContext.Consumer>
             ```
+* 内容通讯:props.chidlren
+    * String: 组件文本内容
+    * Object: 虚拟节点
+    * Array: 多个虚拟节点组成的数组
+    * Undefined: 单标签或者无内容的情况下返回的值
+    > 可以利用React.Children下的方法来处理props.chilren
 
-    
+* 属性的类型及校验
+    > 设置propTypes静态属性
+    * prop-types
+        * string
+        * bool
+        * number
+        * array
+        * object
+        * func
+        * symbol
+        * ....
+        * isRequired 必填
+* 设置props默认值
+    > 设置defaultProps静态属性
+
+> PS: props属性类型校验与默认值是组件开发过程中必要的操作,可以有效减少错误和给予用户友好的提示
+
+
+* 生命周期(只有类组件才有生命周期)
+    1. 初始化阶段: Initial
+        * constructor
+    2. 挂载阶段: Mounting
+        * componentWillMount (不推荐)
+        * componentDidMount
+    3. 更新节点: Updating
+        * componentWillUpdate (不推荐)
+        * componentDidUpdate
+    4. 销毁节点: Unmounting
+        * componentWillUnmount
+
+    * 特殊生命周函数
+        * componentWillReceiveProps (不推荐)
+        * shouldComponentUpdate
+    * 了解每个生命周期函数在什么时候执行
+        * 
