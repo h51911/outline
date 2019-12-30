@@ -374,4 +374,34 @@ import的引入方式
             * go()/back()/forward()                 刷新页面
             * state / pushState()/replaceState()    不刷新页面
 
-* 
+* 万物皆组件
+    * HashRouter
+    * Route
+    * Link
+
+* 导航
+    * 声明式导航
+    * 编程式导航
+        * 跳转方式
+            * history.push()
+            * history.replace()
+        * 路由对象(props.xxx)
+            * history: 用于跳转
+            * location:
+            * match:
+        * 获取方式
+            * 通过Route渲染组件(如:`<Route path="/home" component={Home}/>`)
+            * 通过高阶组件withRouter实现(推荐)
+* 高阶组件
+    * 设计模式: 装饰器模式
+    * 纯函数
+        > 不对传入的参数进行修改, 相同的参数永远返回一样的值
+        ```js
+            function pf(num){
+                return num*num
+            }
+
+            pf(2);//4
+            pf(2);//4
+
+        ```

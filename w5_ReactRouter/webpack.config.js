@@ -27,11 +27,20 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets:['@babel/preset-react']
+                            presets:['@babel/preset-react'],
+                            plugins:[
+                                ['@babel/plugin-proposal-decorators',{legacy: true}]
+                            ]
                         }
                     }
                 ]
             },
+
+            // css loader(注意顺序:从后往前)
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+            }
         ]
     },
 

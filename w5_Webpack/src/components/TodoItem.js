@@ -36,6 +36,7 @@ function TodoItem({data,idx}){
 }
 
 // class TodoItem extends React.Component{
+//     static contexType = MyContext
 //     render(){
 //         let {data,idx} = this.props;
 //         let {removeItem,completeItem,selecteItem} = this.context;
