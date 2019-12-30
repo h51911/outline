@@ -188,7 +188,9 @@ import的引入方式
         > webpack.config.js, 是一个commonjs规范的模块
         * 配置项
             * entry
+                > 默认:src/index.js
             * output
+                > dist
             * 加载器loader
             * 插件plugin
 
@@ -314,4 +316,62 @@ import的引入方式
         * componentWillReceiveProps (不推荐)
         * shouldComponentUpdate
     * 了解每个生命周期函数在什么时候执行
-        * 
+    
+
+
+## day6-1
+
+### 面试题
+* webpack如何实现多页面应用
+
+### 复习
+* React的生命周期
+* Context
+    1. 创建
+        ```js
+            const MyContext = React.createContext('jingjing')
+        ```
+    2. 共享数据
+        ```js
+            <MyContext.Provider value="laoxie">
+            
+            </MyContext.Provider>
+        ```
+    3. 接收
+        * 类组件
+            ```js
+                // 设置静态属性
+                Sub.contextType = MyContext
+                // 获取
+                this.context
+            ```
+        * Consumer
+            ```js
+                <MyContext.Consumer>
+                    {
+                        (value)=>{
+                            return <div></div>
+                        }
+                    }
+                </MyContext.Consumer>
+            ```
+* 数据类型校验
+    > 使用官方模块: prop-types
+    * 给组件设置静态属性: propTypes
+* 设置props默认组
+    * 给组件设置静态属性: defaultProps
+
+
+### 知识点
+* 路由
+    * 多页面应用MPA     Multiple Page Application
+    * 单页面应用SPA     Single Page Application
+* 路由模式
+    * hash
+        > 利用hash值的来实现页面跳转
+    * history(需要服务器的支持)
+        > HTML5新特(对history对像进行增强)
+            * go()/back()/forward()                 刷新页面
+            * state / pushState()/replaceState()    不刷新页面
+
+* 
