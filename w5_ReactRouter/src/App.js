@@ -73,7 +73,7 @@ class App extends Component {
                 }
             </ul> */}
             <Row style={{backgroundColor:'#001529'}}>
-                <Col span={18}>
+                <Col span={14}>
                 <Menu 
                 mode="horizontal" 
                 onSelect={this.changeMenu}
@@ -92,7 +92,7 @@ class App extends Component {
                     }
                 </Menu>
                 </Col>
-                <Col className="nav-link" span={6} style={{lineHeight:'46px',textAlign:'right'}}>
+                <Col className="nav-link" span={10} style={{lineHeight:'46px',textAlign:'right'}}>
                     <Button 
                     type="link" 
                     icon="login"
@@ -109,6 +109,7 @@ class App extends Component {
             <Switch>
                 {/* 路由配置,当浏览器路径匹配path时,渲染component组件 */}
                 <Route path='/home' component={Home} />
+                {/* /discover/phone */}
                 <Route path='/discover' component={Discover} />
                 <Route path='/cart' component={Cart} />
                 <Route path='/goods/:id' component={Goods} />

@@ -429,6 +429,24 @@ import的引入方式
     });// [20,40,60]
 
 ```
+* 如何取消ajax请求
+```js
+    // 1. 原生
+    let xhr = new XMLHttpRequest();
+    xhr.open('get','xxx',true);
+    xhr.send();
+
+    xhr.abort();
+
+    // 2. axios
+    const source = axios.CancelToken.source();
+    axios.get(url,{
+        cancelToken: source.token
+    })
+
+    // 在销毁生命周期函数中执行
+    source.cancel()
+```
 
 ### 复习
 * ReactRouter4
@@ -467,3 +485,22 @@ import的引入方式
 
 
 ### 知识点
+* 动态路由
+* 嵌套路由
+    ```js
+
+        new VueRouter({
+            routes:[
+                {
+                    path:'/discover',
+                    component:Discover,
+                    children:[
+                        {
+                            path:'',
+                            component:xxx
+                        }
+                    ]
+                }
+            ]
+        })
+    ```
