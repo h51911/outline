@@ -1,0 +1,9 @@
+.nav-link button{color:#fff}
+.nav-link button:hover{color:#40a9ff}
+
+.price{
+    del{margin-right:5px;color:#999}
+    span{color:#f00}
+    span::before{content:'￥'}
+    del::before{content:'￥'}
+}

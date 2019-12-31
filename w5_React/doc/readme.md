@@ -405,3 +405,65 @@ import的引入方式
             pf(2);//4
 
         ```
+
+
+## day6-2
+
+### 面试题
+* 数组map方法的原理
+```js
+    let arr = [10,20,30];
+
+    if(Array.prototype.map === undefined){
+        Array.prototype.map = function(callback){
+            var result = [];
+            for(var i=0;i<this.length;i++){
+                result.push(callback.call(this,this[i],i,this))
+            }
+            return result;
+        }
+    }
+
+    let res = arr.map(function(item,idx,array){
+        return item*2;
+    });// [20,40,60]
+
+```
+
+### 复习
+* ReactRouter4
+    * 路由类型
+        * HashRouter
+        * BrowserRouter
+    * 路由配置
+        * Route
+            * path
+            * component
+            * exact
+            * render
+        * Switch
+        * Redirect
+            * from
+            * to
+            * exact
+    * 跳转
+        * 声明式导航
+            * Link
+            * NavLink
+                * to
+        * 编程式导航
+            * 路由对象
+                * history
+                    * push()
+                    * replace()
+                * location
+                * match
+            * 如何获取路由对象: props.xxx
+                * withRouter
+                * 通过Route渲染组件
+* 高阶组件
+    * 设计模式: 装饰器模式
+    * ES7 @
+
+
+### 知识点

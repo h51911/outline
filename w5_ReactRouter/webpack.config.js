@@ -17,6 +17,14 @@ module.exports = {
         contentBase:"./public", // 确定服务器根目录
     },
 
+    // 目录映射（别名）
+    resolve:{
+        alias:{
+            '@':path.resolve(__dirname,'./src'),
+            '~':path.resolve(__dirname,'./src/components')
+        }
+    },
+
     // 加载器
     module:{
         rules:[
@@ -29,7 +37,8 @@ module.exports = {
                         options: {
                             presets:['@babel/preset-react'],
                             plugins:[
-                                ['@babel/plugin-proposal-decorators',{legacy: true}]
+                                ['@babel/plugin-proposal-decorators',{legacy: true}],
+                                ['@babel/plugin-proposal-class-properties',{loose: true}],
                             ]
                         }
                     }
@@ -40,6 +49,12 @@ module.exports = {
             {
                 test:/\.css$/,
                 use:['style-loader','css-loader']
+            },
+
+            // sass loader(注意顺序:从后往前)
+            {
+                test:/\.scss$/,
+                use:['style-loader','css-loader','sass-loader']
             }
         ]
     },

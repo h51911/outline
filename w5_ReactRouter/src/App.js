@@ -5,10 +5,13 @@ import { HashRouter, Route, Link, NavLink, Switch, Redirect,withRouter } from 'r
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Reg from './pages/Reg';
+import Goods from './pages/Goods';
+import Cart from './pages/Cart';
+import Discover from './pages/Discover';
 
-import { Menu, Icon } from 'antd';
+import { Menu, Icon,Row,Col,Button } from 'antd';
 import 'antd/dist/antd.css'
-
+import './App.scss'
 
 class App extends Component {
     constructor(props) {
@@ -21,20 +24,21 @@ class App extends Component {
                 path: '/home',
                 text: '首页',
                 icon:'home'
+            },{
+                name: 'discover',
+                path: '/discover',
+                text: '发现',
+                icon:'compass'
             }, {
-                name: 'login',
-                path: '/login',
-                text: '登录',
-                icon:'login'
-            }, {
-                name: 'reg',
-                path: '/reg',
-                text: '注册',
-                icon:'user-add'
+                name: 'cart',
+                path: '/cart',
+                text: '购物车',
+                icon:'shopping-cart'
             }]
         }
 
         this.changeMenu = this.changeMenu.bind(this);
+        this.goto = this.goto.bind(this);
     }
     changeMenu(current){
         let {key} = current;
@@ -44,6 +48,9 @@ class App extends Component {
         this.setState({
             selectedKeys:[key]
         })
+    }
+    goto(path){
+        this.props.history.push(path)
     }
     componentDidMount(){
         console.log(this.props.location.pathname)
@@ -65,27 +72,46 @@ class App extends Component {
                     })
                 }
             </ul> */}
-
-            <Menu 
-            mode="horizontal" 
-            onSelect={this.changeMenu}
-            selectedKeys={selectedKeys}
-            theme="dark"
-            >
-                {
-                    menu.map(item=>{
-                        return <Menu.Item key={item.path}>
-                            {/* <NavLink to={item.path} activeStyle={{color:'#f00'}}> */}
-                                <Icon type={item.icon} />
-                                {item.text}
-                            {/* </NavLink> */}
-                        </Menu.Item>
-                    })
-                }
-            </Menu>
+            <Row style={{backgroundColor:'#001529'}}>
+                <Col span={18}>
+                <Menu 
+                mode="horizontal" 
+                onSelect={this.changeMenu}
+                selectedKeys={selectedKeys}
+                theme="dark"
+                >
+                    {
+                        menu.map(item=>{
+                            return <Menu.Item key={item.path}>
+                                {/* <NavLink to={item.path} activeStyle={{color:'#f00'}}> */}
+                                    <Icon type={item.icon} />
+                                    {item.text}
+                                {/* </NavLink> */}
+                            </Menu.Item>
+                        })
+                    }
+                </Menu>
+                </Col>
+                <Col className="nav-link" span={6} style={{lineHeight:'46px',textAlign:'right'}}>
+                    <Button 
+                    type="link" 
+                    icon="login"
+                    onClick={this.goto.bind(this,'/login')}
+                    >登录</Button>
+                    <Button 
+                    type="link"
+                    icon="user-add"
+                    onClick={this.goto.bind(this,'/reg')}
+                    >注册</Button>
+                </Col>
+            </Row>
+            
             <Switch>
                 {/* 路由配置,当浏览器路径匹配path时,渲染component组件 */}
                 <Route path='/home' component={Home} />
+                <Route path='/discover' component={Discover} />
+                <Route path='/cart' component={Cart} />
+                <Route path='/goods/:id' component={Goods} />
                 <Route path='/login' component={Login} />
                 <Route path='/reg' component={Reg} />
                 <Route path='/notfound' render={() => <h1>你访问的页面不存在</h1>} />
