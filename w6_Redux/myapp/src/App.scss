@@ -1,0 +1,17 @@
+// 全局样式
+.nav-link button{color:#fff}
+.nav-link button:hover{color:#40a9ff}
+
+.price{
+    >del{
+        margin-right:5px;color:#999;
+        // &: 父级选择器
+        &::before{content:'￥'}
+    }
+    >span{
+        color:#f00;
+        &::before{content:'￥'}
+    }
+    
+}
+.pd{padding:15px}

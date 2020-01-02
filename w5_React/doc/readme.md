@@ -510,3 +510,74 @@ import的引入方式
 
 ### 知识点
 * webpack测试环境下的文件都是在内存中运行
+* 移动端事件
+    * touch
+        * touchstart
+        * touchmove
+        * ctouchend
+    * 手势（zepto）
+        * tap
+        * singleTap
+        * doubleTap
+        * longtap
+        * swipe, swipeLeft, swipeRight, swipeUp, swipeDown
+* script引入与npm引用
+    ```js
+        <script src="jquery.js"></script>
+        <script>
+            window.$
+        </script>
+
+        // module（AMD,CMD,CommonJS,ES Module）
+        import $ from 'jquery'
+        $('.box')
+    ```
+* React组件通讯方式
+    * 父->子： props
+    * 子->父： render props
+        > 把父组件的方法通过props传到子组件执行
+    * 兄弟->兄弟：
+    * 深层次组件：
+        * 逐层传递
+        * Context
+    * Redux
+        * 核心概念: 
+            * store：仓库
+                ```js
+                    let store = createStore(reudcer)
+                ```
+                * 常用方法
+                    * getState()    获取state数据
+                    * dispatch(action)    修改state数据
+                    * subscribe()   监听state数据修改
+            * State：数据
+                
+            * Reducer：修改数据的方法
+                * 是一个纯函数
+                * 必须返回一个新的state
+                * 参数
+                    * state
+                    * action
+            * Action: 命令/指令
+                * type: 一个简单的字符串常量，例如ADD, UPDATE, DELETE等。
+                * payload: 用于更新状态的数据。
+                ```js
+                    let action = {type:'add_to_cart',payload:{
+                        //商品信息
+                        //id,name,qty,price....
+                    }}
+                    store.dispatch(action);
+
+                    store.dispatch({type:'remove_from_cart',payload:123})
+                ```
+        * Redux设计和使用的三项基本原则
+            * store是必须是唯一的
+            * 只有store能改变自己的内容
+                > reducer 可以接受state，但是绝对不能修改state
+            * Reducer必须是一个纯函数
+                > 纯函数指的是，给固定的输入，就一定会有固定的输出，而且不会有任何副作用
+* react-redux
+    1. context共享数据
+    > 把store放到context中给所有的子组件共享
+    2. connect高阶组件接收数据
+        
