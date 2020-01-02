@@ -3,8 +3,15 @@
 .nav-link button:hover{color:#40a9ff}
 
 .price{
-    del{margin-right:5px;color:#999}
-    span{color:#f00}
-    span::before{content:'￥'}
-    del::before{content:'￥'}
+    >del{
+        margin-right:5px;color:#999;
+        // &: 父级选择器
+        &::before{content:'￥'}
+    }
+    >span{
+        color:#f00;
+        &::before{content:'￥'}
+    }
+    
 }
+.pd{padding:15px}

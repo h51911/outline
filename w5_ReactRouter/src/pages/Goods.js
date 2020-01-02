@@ -90,7 +90,7 @@ class Goods extends Component {
             
             {/* 推荐列表 */}
             <div style={Styles.pd}>
-                <h4 style={Styles.mt}>推荐列表</h4>
+                {/* <h4 style={Styles.mt}>推荐列表</h4> */}
                 {/* <Row gutter={30}>
                 {
                     commedList.map(goods=>{
@@ -112,7 +112,7 @@ class Goods extends Component {
                     })
                 }
             </Row> */}
-            <Goodslist datalist={commedList} {...this.props}/>
+            <Goodslist datalist={commedList} title="推荐列表"/>
 
             </div>
         </div>

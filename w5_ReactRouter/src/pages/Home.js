@@ -5,6 +5,7 @@ import {withStorage} from '../utils/hoc';
 import Api from '../api';
 
 import { Carousel,Row,Col } from 'antd';
+import GoodsList from '~/GoodsList';
 
 @withStorage
 class Home extends Component{
@@ -61,8 +62,8 @@ class Home extends Component{
                 datalist.map((item,idx)=>{
                     return (
                         <React.Fragment key={idx}>
-                            <h4>{item.title}</h4>
-                            <Row gutter={[30,30]}>
+                             {/* <h4>{item.title}</h4>
+                           <Row gutter={[30,30]}>
                                 {
                                     item.item.map((item,idx)=><Col key={item.goods_id} 
                                     span={12}
@@ -79,7 +80,8 @@ class Home extends Component{
                                         </p>
                                     </Col>)
                                 }
-                            </Row>
+                            </Row> */}
+                            <GoodsList datalist={item.item} title={item.title}/>
                         </React.Fragment>
                     )
                 })

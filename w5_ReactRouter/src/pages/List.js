@@ -57,7 +57,7 @@ class List extends React.Component{
                         <Tabs.TabPane tab={item.gc_name} key={item.gc_id}>
                             
                            {/*  当前tab的数据*/}
-                            <Goodslist datalist={datalist} {...this.props}/>
+                            <Goodslist datalist={datalist}/>
                         </Tabs.TabPane>
                     ))}
                 </Tabs> 
