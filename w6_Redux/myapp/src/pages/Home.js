@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 
 import {withStorage} from '../utils/hoc';
 
-import Api from '../api';
+import {Nsg} from '../api';
 
 import { Carousel,Row,Col } from 'antd';
 import GoodsList from '~/GoodsList';
@@ -28,7 +28,7 @@ class Home extends Component{
     //        console.log('res:',res)
     //    })
 
-       let data = await Api.get({
+       let data = await Nsg.get({
         act:'index'
        });
 

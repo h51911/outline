@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import{Icon,Button,Row,Col} from 'antd'
-import Api from '@/api';
+import {Nsg} from '@/api';
 import Goodslist from '~/GoodsList'
 import './Goods.scss';
 import {connect} from 'react-redux';
@@ -34,7 +34,7 @@ class Goods extends Component {
 
         // 发起ajax请求获取当前商品数据
         // ?
-        let data = await Api.get({
+        let data = await Nsg.get({
             act: 'goods',
             op: 'goods_detail',
             goods_id: id,

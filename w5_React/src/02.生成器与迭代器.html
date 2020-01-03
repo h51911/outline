@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02.生成器与迭代器</title>
+</head>
+<body>
+    <h1>02.生成器与迭代器</h1>
+    <script>
+        /*
+            02.生成器与迭代器
+            生成器:
+                * return
+                * yield
+                > 执行时，只是返回一个迭代器，调用迭代器的next方法时才执行里面的代码
+
+            迭代器：
+                * next()    返回一个对象，格式为：{value,done}
+                * for...of
+        */
+
+        function * create(){
+            console.log('start')
+            // 暂停
+            yield 'laoxie';
+            console.log(1)
+            yield 'jingjing';
+            console.log(2)
+            yield {username:'malin'};
+            console.log(3)
+            // 结束
+            return 100;
+            console.log('end')
+
+        }
+
+        let it = create();// 返回一个迭代器
+    </script>
+</body>
+</html>

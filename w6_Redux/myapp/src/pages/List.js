@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'antd';
-import Api from '@/api'
+import {Nsg} from '@/api'
 import Goodslist from '~/GoodsList'
 
 class List extends React.Component{
@@ -11,7 +11,7 @@ class List extends React.Component{
     }
     changeType = async (gc_id)=>{
         // 
-        let {datas} = await Api.get({
+        let {datas} = await Nsg.get({
             act:'goods',
             op:'goods_list',
             gc_id,
@@ -27,7 +27,7 @@ class List extends React.Component{
         let {gc_id} = this.props.match.params
         console.log('List:',gc_id);
 
-        let {datas} = await Api.get({
+        let {datas} = await Nsg.get({
             act:'goods_class',
             op:'get_child_all',
             gc_id

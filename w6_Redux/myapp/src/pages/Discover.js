@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { Switch,Tabs } from 'antd';
-import Api from '@/api'
+import {Nsg} from '@/api'
 import {Route} from 'react-router-dom'
 import List from './List';
 
@@ -15,7 +15,7 @@ class Discover extends Component{
     }
     async componentDidMount(){
         let {currentIdx} = this.state;
-        let {datas} = await Api.get({
+        let {datas} = await Nsg.get({
             act:'goods_class'
         });
         console.log('datas:',datas)

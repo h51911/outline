@@ -641,3 +641,19 @@ import的引入方式
     * combineReducers
 * Action Creator
     > 一个用于创建action的方法(创建一个格式为：{type,payload})
+
+* Generator 生成器函数
+* Iterator  迭代器
+    * for...of  能遍历具有迭代器的数据
+    * yield  暂停代码执行
+    * return 结束
+
+    ```js
+        function* create(){
+            
+        }
+        create();//undefined
+    ```
+* redux-saga
+    * 使用步骤
+        1. 

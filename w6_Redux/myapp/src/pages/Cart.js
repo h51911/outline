@@ -14,20 +14,26 @@ const mapStateToProps = state=>{
     }
 }
 const mapDispatchToProps = dispatch=>{
-    // return {
-    //     removeItem(id){
-    //         dispatch(remove(id))
-    //     },
-    //     clearCart(){
-    //         dispatch(clear())
-    //     },
-    //     changeQty(id,qty){
-    //         dispatch(changeQty(id,qty))
-    //     }
-    // }
+    return {
+        removeItem(id){
+            dispatch(remove(id))
+        },
+        clearCart(){
+            dispatch(clear())
+        },
+        changeQty(id,qty){
+            dispatch(changeQty(id,qty))
+        },
+        changeQtyAsync(goods_id,goods_qty){
+            dispatch({
+                type:'CHANGE_QTY_ASYNC',
+                payload:{goods_id,goods_qty}
+            })
+        }
+    }
 
     // 工作中有可能使用的方式：
-    return bindActionCreators(cartActions,dispatch);
+    // return bindActionCreators(cartActions,dispatch);
 }
 @connect(mapStateToProps,mapDispatchToProps)
 class Cart extends Component{
@@ -79,8 +85,8 @@ class Cart extends Component{
     // }
 
     render(){console.log('cart:',this.props)
-        let {cartlist,totalPrice,history} = this.props
-        let {remove:removeItem,clear:clearCart,changeQty} = this.props;
+        let {cartlist,totalPrice,history,removeItem,clearCart,changeQty,changeQtyAsync} = this.props
+        // let {remove:removeItem,clear:clearCart,changeQty} = this.props;
         return <div className="pd">
             <Steps current={0} size="small">
                 <Steps.Step title="购物车" description="Shopping cart" />
@@ -115,7 +121,8 @@ class Cart extends Component{
                             min={1} 
                             max={10} 
                             value={item.goods_qty} 
-                            onChange={changeQty.bind(this,item.goods_id)}
+                            // onChange={changeQty.bind(this,item.goods_id)}
+                            onChange={changeQtyAsync.bind(this,item.goods_id)}
                             style={{width:50,marginLeft:5}}
                                 />
                         </div>}
