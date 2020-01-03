@@ -6,6 +6,8 @@ import './Goods.scss';
 import {connect} from 'react-redux';
 import store from '../store';
 
+import {add2cart,changeQty} from '../store/actions/cart';
+
 let Styles = {
     mt:{
         marginTop:20
@@ -57,27 +59,37 @@ class Goods extends Component {
 
         // 已经添加过的商品：数量+1
         if(has){
-            dispatch({
-                type:'change_qty',
-                payload:{
-                    goods_id,
-                    goods_qty:has.goods_qty+1
-                }
-            })
+            // dispatch({
+            //     type:'change_qty',
+            //     payload:{
+            //         goods_id,
+            //         goods_qty:has.goods_qty+1
+            //     }
+            // })
+            dispatch(changeQty(goods_id,has.goods_qty+1))
         }else{
-            let action = {
-                type:'add_to_cart',
-                payload:{
-                    // 商品信息
-                    goods_id,
-                    goods_name,
-                    goods_price,
-                    goods_image,
-                    goods_qty:1
-                }
-            }
-            dispatch(action);
+            // let action = {
+            //     type:'add_to_cart',
+            //     payload:{
+            //         // 商品信息
+            //         goods_id,
+            //         goods_name,
+            //         goods_price,
+            //         goods_image,
+            //         goods_qty:1
+            //     }
+            // }
+            // dispatch(action);
 
+            let goods = {
+                // 商品信息
+                goods_id,
+                goods_name,
+                goods_price,
+                goods_image,
+                goods_qty:1
+            }
+            dispatch(add2cart(goods))
         }
     }
 
@@ -157,7 +169,7 @@ class Goods extends Component {
     }
 }
 const mapStateToProps = state=>({
-    cartlist:state.cartlist
+    cartlist:state.cart.cartlist
 })
 const mapDispatchToProps = dispatch=>({
     dispatch

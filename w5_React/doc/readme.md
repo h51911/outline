@@ -580,4 +580,64 @@ import的引入方式
     1. context共享数据
     > 把store放到context中给所有的子组件共享
     2. connect高阶组件接收数据
-        
+
+
+## day6-5
+
+### 复习
+* redux
+    * 几个问题
+        * 状态管理工具
+        * 用于在组件之间进行数据通讯
+        * 工作流程
+    * 核心概念
+        * store
+            ```js
+                let store = createStore(reducer)
+            ``` 
+        * state
+        * reducer
+            > 一个用于修改state的纯函数
+            * 参数
+                * state
+                * action
+            ```js
+                let reducer = function(state,action){
+                    // 定义如何修改state
+                    switch(){
+                        //条件判断
+                        default:
+
+                    }
+                }
+            ```
+        * action ： 命令/指令
+            * 格式：{type,payload}
+    * redux操作
+        * 获取state
+            ```js
+                store.getState();
+            ```
+        * 修改state
+            ```js
+                store.dispatch(action)
+            ```
+        * 监听state
+            ```js
+                store.subscribe(callback)
+            ```
+* react-redux
+    1. context      共享数据
+        ```js 
+            <Provider store={store}></Provider>
+        ```
+    2. connect()    高阶组件把数据传入React组件
+        ```js
+            App = connect(mapStateToProps,mapDispatchToProps)(App)
+        ```
+
+### 知识点
+* redux模块化
+    * combineReducers
+* Action Creator
+    > 一个用于创建action的方法(创建一个格式为：{type,payload})

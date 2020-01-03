@@ -144,10 +144,10 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = function(state){
+const mapStateToProps = function(state){console.log('state:',state)
     // 需要传递什么数据到组件的props就返回什么
     return {
-        cartlist:state.cartlist
+        cartlist:state.cart.cartlist
     }
 }
 
