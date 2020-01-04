@@ -18,7 +18,7 @@ import {message} from 'antd'
 
 function * getStock({payload}){
     
-
+    // My.get(`/goods/${payload.goods_id}/stock`)
     let {data} = yield call(My.get,`/goods/${payload.goods_id}/stock`)
 
     // 商品数量不允许超过库存数量
@@ -35,10 +35,15 @@ function * getStock({payload}){
     
 }
 
+function * login(){
+    
+}
+
 function * rootSaga(){console.log('rootSaga')
     // 监听用户指令
     // yield takeEvery("CHANGE_QTY_ASYNC", getStock)
     yield takeLatest("CHANGE_QTY_ASYNC", getStock);//防抖
+    yield takeLatest("LOGIN_ASYNC", login);//防抖
 }
 
  export default rootSaga

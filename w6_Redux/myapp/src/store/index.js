@@ -1,6 +1,6 @@
 
-import {createStore,applyMiddleware} from 'redux';
-
+import {createStore,applyMiddleware,compose} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import reducer from './reducer';
 
 import rootSaga from './saga'
@@ -15,7 +15,11 @@ const sagaMiddleware = createSagaMiddleware();
  let enhancer = applyMiddleware(sagaMiddleware);
  console.log('enhancer:',enhancer)
 
-let store = createStore(reducer,enhancer);
+//  调试工具与其他中间件的结合
+let store = createStore(reducer,composeWithDevTools(enhancer));
+
+// 使用多个中间件
+// let store = createStore(reducer,compose(enhancer,composeWithDevTools()));
 
 //  4.运行 Saga配置
 sagaMiddleware.run(rootSaga);
