@@ -687,31 +687,71 @@ import的引入方式
 
     ```
 
-    ## day6-6
+## day6-6
 
-    ### 项目准备工作
-    * 组队
-    * 选项目
-    * 汇总
-        * 汇总到学委：
-            * 团队成员：laoxie,jingjing（组长）,malin
-                * 选组长
-            * 项目名称：xxx
-    * 创建git仓库
-        * 远程仓库
-        * 本地仓库
-    * 关联远程仓库与本地仓库
-        * git remote add origin xxx
-    * 代码准备工作
-        * webpack配置
-        * 项目依赖安装
-        * git过滤清单
-        * 全局代码
-            * 路由
-            * redux
-                * saga
-            * antd
-            .....
-    * 分配任务
-    * 写需求文档
-        > 分析所选项目的所有功能
+### 项目准备工作
+* 组队
+* 选项目
+* 汇总
+    * 汇总到学委：
+        * 团队成员：laoxie,jingjing（组长）,malin
+            * 选组长
+        * 项目名称：xxx
+* 创建git仓库
+    * 远程仓库
+    * 本地仓库
+* 关联远程仓库与本地仓库
+    * git remote add origin xxx
+* 代码准备工作
+    * webpack配置
+    * 项目依赖安装
+    * git过滤清单
+    * 全局代码
+        * 路由
+        * redux
+            * saga
+        * antd
+        .....
+* 分配任务
+* 写需求文档（重要）
+    > 分析所选项目的所有功能，并以文档形式展示（周一下课前完成）
+
+### 知识点
+* process.env
+    * NODE_ENV
+* create-react-app的扩展配置
+    * eject
+    * react-app-rewired (推荐)
+* git分支操作
+    * 公共分支
+        * master    用于版本管理（专人管理）
+        * develop   开发分支
+        * release   预发布版本（未测试版本）
+        * hotfixs   处理紧急bug
+    * 私有分支
+        * 每个团队成员一人一个分支
+            * laoxie
+            * jingjing
+            * linjie
+    * 操作命令
+        * 创建分支：git branch laoxie 
+        * 切换分支：git checkout develop
+        * 合并分支：git merge laoxie
+
+        * 拉取：git pull origin develop
+        * 推送：git push origin develop
+
+        * 版本回退（工作区，暂存区，版本库）
+            * git reset --hard [版本号]/HEAD
+                * --hard    回退工作区，暂存区，版本库
+                * --mixed   回退暂存区，版本库（默认）
+                * --soft    仅回退版本库
+        * 冲突
+            * 沟通
+            * 删除多余代码 -> 提交
+            * 减少冲突可行性方案
+                * 合理分配任务
+                * 规范操作流程
+                * code review
+        * git服务器
+            * gitlap    部署到本地的服务器
