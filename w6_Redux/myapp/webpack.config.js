@@ -1,20 +1,22 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    // entry:'./src/index.js', // main.js
-    entry:{
-        home:'./src/index.js',// home.js
-        // login:'./src/login.js' //login.js
-    },
+    entry:'./src/index.js', // main.js
+    // entry:{
+    //     home:'./src/index.js',// home.js
+    //     // login:'./src/login.js' //login.js
+    // },
 
     output:{
         path:path.resolve(__dirname,'./dist'),
-        filename:'[name].[hash:5].min.js'
+        filename:'js/[name].[hash:5].min.js'
     },
 
     devServer:{
         contentBase:"./public", // 确定服务器根目录
+        compress:true, // 启动服务器gzip压缩
     },
 
     // 目录映射（别名）
@@ -40,6 +42,12 @@ module.exports = {
                             plugins:[
                                 ['@babel/plugin-proposal-decorators',{legacy: true}],
                                 ['@babel/plugin-proposal-class-properties',{loose: true}],
+                                '@babel/plugin-syntax-dynamic-import',
+                                ['import',{
+                                    "libraryName": "antd",
+                                    "libraryDirectory": "es",
+                                    "style": "css" // `style: true` 会加载 less 文件
+                                  }]
                             ]
                         }
                     }
@@ -72,6 +80,8 @@ module.exports = {
         //     // 以template文件作为模板在出口目录中生成一个html文件,
         //     template:'./public/index.html',
         //     filename:'login.html'
-        // })
+        // }),
+
+        new CleanWebpackPlugin()
     ]
 }

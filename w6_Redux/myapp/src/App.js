@@ -1,17 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component,lazy,Suspense } from 'react';
 
 import { HashRouter, Route, Link, NavLink, Switch, Redirect,withRouter } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Reg from './pages/Reg';
-import Goods from './pages/Goods';
-import Cart from './pages/Cart';
-import Discover from './pages/Discover';
+// 传统写法
+// import Home from './pages/Home';
+// import Login from './pages/Login';
+// import Reg from './pages/Reg';
+// import Goods from './pages/Goods';
+// import Cart from './pages/Cart';
+// import Discover from './pages/Discover';
 
-import { Menu, Icon,Row,Col,Button,Badge } from 'antd';
-import 'antd/dist/antd.css'
+// 路由懒加载：在切换到这个页面是才加载相应的路由组件
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const Reg = lazy(() => import("./pages/Reg"));
+const Goods = lazy(() => import("./pages/Goods"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Discover = lazy(() => import("./pages/Discover"));
+
+// antd全部引入
+// import { Menu, Icon,Row,Col,Button,Badge } from 'antd';
+// import 'antd/dist/antd.css'
 import './App.scss';
+
+// antd按需加载
+// import Menu from 'antd/es/menu';
+// import 'antd/es/menu/style/css'
+// import Icon from 'antd/es/ico';
+// import 'antd/es/icon/style/css'
+
+// 利用babel-plugin-import插件实现按需加载
+import { Menu, Icon,Row,Col,Button,Badge } from 'antd';
 
 import {connect} from 'react-redux';
 
@@ -122,24 +141,25 @@ class App extends Component {
                     >注册</Button>
                 </Col>
             </Row>
-            
-            <Switch>
-                {/* 路由配置,当浏览器路径匹配path时,渲染component组件 */}
-                <Route path='/home' component={Home} />
-                {/* /discover/phone */}
-                <Route path='/discover' component={Discover} />
-                <Route path='/cart' component={Cart} />
-                <Route path='/goods/:id' component={Goods} />
-                <Route path='/login' component={Login} />
-                <Route path='/reg' component={Reg} />
-                <Route path='/notfound' render={() => <h1>你访问的页面不存在</h1>} />
+            <Suspense fallback={<div>loading...</div>}>
+                <Switch>
+                    {/* 路由配置,当浏览器路径匹配path时,渲染component组件 */}
+                    <Route path='/home' component={Home} />
+                    {/* /discover/phone */}
+                    <Route path='/discover' component={Discover} />
+                    <Route path='/cart' component={Cart} />
+                    <Route path='/goods/:id' component={Goods} />
+                    <Route path='/login' component={Login} />
+                    <Route path='/reg' component={Reg} />
+                    <Route path='/notfound' render={() => <h1>你访问的页面不存在</h1>} />
 
-                {/* "/" 跳转到 "/home" */}
-                <Redirect from="/" to="/home" exact />
-                {/* 404 */}
-                <Redirect to="/notfound" />
-                {/* <Route path="/" component={Home}/> */}
-            </Switch>
+                    {/* "/" 跳转到 "/home" */}
+                    <Redirect from="/" to="/home" exact />
+                    {/* 404 */}
+                    <Redirect to="/notfound" />
+                    {/* <Route path="/" component={Home}/> */}
+                </Switch>
+            </Suspense>
         </div>
     }
 }
