@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<h1>摄像头调用sdfasdfd</h1>
+	<button id="btnPz" class="mui-btn mui-btn-success">拍照</button>
+	<script>
+		let btnPz = document.getElementById('btnPz')
+			// 获取摄像头管理对象(获取前置或后置摄像头)
+			document.addEventListener('plusready',()=>{
+				// 返回摄像头对象
+				let cmr = plus.camera.getCamera(2);
+				console.log(cmr);
+				
+				// 拍照
+				btnPz.onclick = ()=>{
+					cmr.captureImage((capturedFile )=>{
+						// 拍照成功进入
+						console.log('success:',capturedFile )
+						
+						// 存入相册
+						plus.gallery.save( capturedFile, ()=>{
+							// 自动消失的消息
+							plus.nativeUI.toast('保存成功');
+						})
+					},()=>{
+						// 拍照失败进入
+					},{
+						// 配置参数
+						resolution:cmr.supportedImageResolutions[2]
+					})
+				}
+				
+				
+			})
+		
+	</script>
+</body>
+</html>
