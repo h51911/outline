@@ -90,12 +90,24 @@
 		
 		// 获取元素
 		let btnCamera = document.querySelector('#btnCamera');
+		let btnSpeech = document.querySelector('#btnSpeech');
+		let btnGeolocation = document.querySelector('#btnGeolocation');
 		
 		mui.plusReady(function () {
 			
 			btnCamera.onclick = ()=>{
 				let pageWebView =  plus.webview.create( 'view/camera.html', 'page_camera');
 				plus.webview.show( 'page_camera', 'slide-in-right');
+			}
+			
+			btnSpeech.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/speech.html', 'page_speech');
+				plus.webview.show( 'page_speech', 'slide-in-right');
+			}
+			
+			btnGeolocation.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/map.html', 'page_map');
+				plus.webview.show( 'page_map', 'slide-in-right');
 			}
 		   
 		});

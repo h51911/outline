@@ -67,6 +67,8 @@
 						let realPath = plus.io.convertLocalFileSystemURL( path );
 						console.log(path,realPath);
 						player.src = realPath;
+						
+						player.play()
 					},{
 						// 配置参数
 						resolution:cmr.supportedImageResolutions[7]
