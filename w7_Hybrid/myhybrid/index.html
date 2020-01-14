@@ -11,37 +11,96 @@
     </script>
 </head>
 <body>
-	<h1>摄像头调用sdfasdfd</h1>
-	<button id="btnPz" class="mui-btn mui-btn-success">拍照</button>
+	<h1>DCloud平台H5+runtime接口调用</h1>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;" class="mui-navigate-right">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-camera"></i>
+				<div class="mui-media-body" id="btnCamera">
+					摄像头
+					<p class='mui-ellipsis'>拍照、录像、二维码...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-mic"></i>
+				<div class="mui-media-body" id="btnSpeech">
+					语音识别
+					<p class='mui-ellipsis'>语音转换文字...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-map"></i>
+				<div class="mui-media-body" id="btnGeolocation">
+					定位
+					<p class='mui-ellipsis'>地图、订餐、附近的人...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-contact"></i>
+				<div class="mui-media-body" id="btnContact">
+					通讯录
+					<p class='mui-ellipsis'>获取联系人，打电话，发短信...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-spinner mui-spin"></i>
+				<div class="mui-media-body" id="btnFingerprint">
+					指纹
+					<p class='mui-ellipsis'>支付、解锁、打开</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-pengyouquan"></i>
+				<div class="mui-media-body" id="btnShare">
+					分享
+					<p class='mui-ellipsis'>分享到朋友圈、QQ空间、微博</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-weixin"></i>
+				<div class="mui-media-body" id="btnPayment">
+					支付
+					<p class='mui-ellipsis'>支付宝支付、微信支付</p>
+				</div>
+			</a>
+		</li>
+	</ul>
 	<script>
-		let btnPz = document.getElementById('btnPz')
-			// 获取摄像头管理对象(获取前置或后置摄像头)
-			document.addEventListener('plusready',()=>{
-				// 返回摄像头对象
-				let cmr = plus.camera.getCamera(2);
-				console.log(cmr);
-				
-				// 拍照
-				btnPz.onclick = ()=>{
-					cmr.captureImage((capturedFile )=>{
-						// 拍照成功进入
-						console.log('success:',capturedFile )
-						
-						// 存入相册
-						plus.gallery.save( capturedFile, ()=>{
-							// 自动消失的消息
-							plus.nativeUI.toast('保存成功');
-						})
-					},()=>{
-						// 拍照失败进入
-					},{
-						// 配置参数
-						resolution:cmr.supportedImageResolutions[2]
-					})
-				}
-				
-				
-			})
+		// document.addEventListener('plusready',()=>{
+		// 	
+		// });
+		// 
+		// mui = {
+		// 	plusReady(handle){
+		// 		document.addEventListener('plusready',handle);
+		// 	}
+		// }
+		
+		// 获取元素
+		let btnCamera = document.querySelector('#btnCamera');
+		
+		mui.plusReady(function () {
+			
+			btnCamera.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/camera.html', 'page_camera');
+				plus.webview.show( 'page_camera', 'slide-in-right');
+			}
+		   
+		});
+
+		
 		
 	</script>
 </body>

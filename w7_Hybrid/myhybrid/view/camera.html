@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			body{padding:15px;}
+			.block-btns button{display:block;margin:10px 0;width:100%;}
+			video{width:100%;}
+		</style>
+	</head>
+
+	<body>
+		<div class="block-btns">
+			<button id="btnPz" class="mui-btn mui-btn-success">拍照</button>
+			<button class="mui-btn  mui-btn-royal mui-btn-outlined btnVideo">录像</button>
+			
+		</div>
+		<video id="player" controls poster="img/jingjing.png">
+			当前浏览器不支持 video，更换电脑
+		</video>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			let player = document.getElementById('player');
+			let btnPz = document.getElementById('btnPz');
+			let btnVideo = document.querySelector('.btnVideo');
+			// let btnBack = document.querySelector('.btnBack')
+			// 
+			// btnBack.onclick = ()=>{
+			// 	plus.webview.close( 'page_camera', 'slide-out-left')
+			// }
+			// 		
+			// 获取摄像头管理对象(获取前置或后置摄像头)
+			document.addEventListener('plusready',()=>{
+				// 返回摄像头对象
+				let cmr = plus.camera.getCamera(2);
+				console.log(cmr);
+				
+				// 拍照
+				btnPz.onclick = ()=>{
+					cmr.captureImage((capturedFile )=>{
+						// 拍照成功进入
+						console.log('success:',capturedFile )
+						
+						// 存入相册
+						plus.gallery.save( capturedFile, ()=>{
+							// 自动消失的消息
+							plus.nativeUI.toast('保存成功');
+						})
+					},()=>{
+						// 拍照失败进入
+					},{
+						// 配置参数
+						resolution:cmr.supportedImageResolutions[2]
+					})
+				}
+				
+				// 录像
+				btnVideo.onclick = ()=>{
+					cmr.startVideoCapture((path)=>{
+						
+						let realPath = plus.io.convertLocalFileSystemURL( path );
+						console.log(path,realPath);
+						player.src = realPath;
+					},{
+						// 配置参数
+						resolution:cmr.supportedImageResolutions[7]
+					});
+				}
+				
+				
+			})
+		</script>
+	</body>
+
+</html>
