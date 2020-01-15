@@ -95,6 +95,7 @@
 		let btnContact = document.querySelector('#btnContact');
 		let btnFingerprint = document.querySelector('#btnFingerprint');
 		let btnShare = document.querySelector('#btnShare');
+		let btnPayment = document.querySelector('#btnPayment');
 		
 		mui.plusReady(function () {
 			
@@ -126,6 +127,11 @@
 			btnShare.onclick = ()=>{
 				let pageWebView =  plus.webview.create( 'view/share.html', 'page_share');
 				plus.webview.show( 'page_share', 'slide-in-right');
+			}
+			
+			btnPayment.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/payment.html', 'page_payment');
+				plus.webview.show( 'page_payment', 'slide-in-right');
 			}
 		   
 		});
