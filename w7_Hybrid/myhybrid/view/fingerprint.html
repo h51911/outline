@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			html,body{width:100%;height:100%;background-color:#fff;}
+			body{margin:0;padding:10px;} 
+			.goods img{width:100%;}
+			.price span{color:#f00;}
+			.price span::before{
+				content:'￥'
+			}
+			.price del{margin-right:5px}
+			.price del::before{
+				content:'￥'
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="goods">
+			<img src="img/jingjing.png"/>
+			<h1>年底促销活动：不要998，也不要98，只要9.8把婧婧带回家</h1>
+			<p class="price">价格：<del>998.00</del><span>9.80</span></p>
+			<button class="mui-btn mui-btn-danger btnBuy">立即抢购</button>
+		</div>
+		
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			let btnBuy = document.querySelector('.btnBuy')
+			mui.plusReady(function () {
+				btnBuy.onclick = ()=>{
+					if(plus.fingerprint) {
+						// 判断手机是否支持指纹模块
+						if(!plus.fingerprint.isSupport()) {
+							plus.nativeUI.alert('此设备不支持指纹识别');
+							return;
+						}
+						// 当前设备是否支持指纹密码
+						if(!plus.fingerprint.isKeyguardSecure()) {
+							plus.nativeUI.alert('此设备未设置密码锁屏，无法使用指纹识别');
+							return;
+						}
+						
+						// 当前设备是否已经录入指纹
+						if(!plus.fingerprint.isEnrolledFingerprints()) {
+							plus.nativeUI.alert('此设备未录入指纹，请到设置中开启');
+							return;
+						}
+						
+					}else {
+						plus.nativeUI.alert('当前环境不支持指纹识别API，请更新到最新版本');
+						return
+					}
+					
+		
+						let waiting = null;
+						if("Android"==plus.os.name){
+							waiting = plus.nativeUI.showWaiting('验证已有手机指纹');
+							waiting.onclose = function(){
+								waiting = null;
+								plus.fingerprint.cancel();
+							}
+						}
+						
+						// 指纹认证
+						plus.fingerprint.authenticate(()=>{
+							plus.nativeUI.closeWaiting();//兼容Android平台关闭等待框
+							plus.nativeUI.toast('指纹识别成功')
+							plus.webview.open( 'success.html', 'page_success')
+						}, (e)=>{
+							console.log('err',e);
+							switch(e.code) {
+								case e.AUTHENTICATE_MISMATCH:
+									plus.nativeUI.toast('指纹匹配失败，请重新输入');
+									break;
+								case e.AUTHENTICATE_OVERLIMIT:
+									plus.nativeUI.closeWaiting();//兼容Android平台关闭等待框
+									plus.nativeUI.alert('指纹识别失败次数超出限制，请使用其它方式进行认证');
+									break;
+								default:
+									plus.nativeUI.closeWaiting();//兼容Android平台关闭等待框
+									plus.nativeUI.alert('指纹识别失败('+e.code+')，请重试');
+									break;
+							}
+						}, {
+							message:'请验证指纹'
+						});
+				}
+			})
+		</script>
+	</body>
+
+</html>

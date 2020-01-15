@@ -93,6 +93,8 @@
 		let btnSpeech = document.querySelector('#btnSpeech');
 		let btnGeolocation = document.querySelector('#btnGeolocation');
 		let btnContact = document.querySelector('#btnContact');
+		let btnFingerprint = document.querySelector('#btnFingerprint');
+		let btnShare = document.querySelector('#btnShare');
 		
 		mui.plusReady(function () {
 			
@@ -114,6 +116,16 @@
 			btnContact.onclick = ()=>{
 				let pageWebView =  plus.webview.create( 'view/contact.html', 'page_contact');
 				plus.webview.show( 'page_contact', 'slide-in-right');
+			}
+			
+			btnFingerprint.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/fingerprint.html', 'page_fingerprint');
+				plus.webview.show( 'page_fingerprint', 'slide-in-right');
+			}
+			
+			btnShare.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/share.html', 'page_share');
+				plus.webview.show( 'page_share', 'slide-in-right');
 			}
 		   
 		});
