@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			html,body{width:100%;height:100%;background-color:#fff;}
+			body{margin:0;padding:10px;} 
+			#contact-list li span{display:inline-block;padding:0 5px;}
+			#contact-list li span:hover{font-weight: bold;color:#58bc58;}
+		</style>
+	</head>
+
+	<body>
+		<ul class="mui-table-view" id="contact-list">
+			<!-- <li class="mui-table-view-cell">Item 1</li> -->
+		</ul>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			let contactList = document.querySelector('#contact-list');
+			mui.plusReady(function () {
+				// 获取设备信息
+				console.log(plus.device)
+				// plus.device.getInfo({
+				// 	success(e){
+				// 		console.log('设备信息:',e)
+				// 	}
+				// });
+				
+				let {ADDRESSBOOK_PHONE,getAddressBook} = plus.contacts
+			    getAddressBook( ADDRESSBOOK_PHONE, (addressbook )=>{
+					console.log('result:',addressbook);
+					
+					window.dial = function(number){
+						console.log('number:',number)
+						plus.device.beep(5);
+						plus.device.vibrate(2000);
+						// plus.device.dial(number, false)
+					}
+					
+					// 获取联系人
+					addressbook.find( ['displayName','phoneNumbers'], (contacts)=>{
+						console.log('contacts',contacts);
+						
+						contactList.innerHTML = contacts.map(item=>{
+							return `<li class="mui-table-view-cell">
+								<strong>${item.displayName}:</strong>
+								${
+									<!-- item.phoneNumbers.map(it=>`<a href="tel:${it.value}">${it.value}</a>`).join('') -->
+									item.phoneNumbers.map(it=>`<span onclick="dial(${it.value})" >${it.value}</span>`).join('')
+								}
+							</li>`
+						}).join('')
+					}, (err)=>{
+						console.log('err',err)
+					});
+				}, (err)=>{
+					console.log('err:',err)
+				} );
+			})
+		</script>
+	</body>
+
+</html>

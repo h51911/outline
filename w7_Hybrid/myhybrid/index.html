@@ -92,6 +92,7 @@
 		let btnCamera = document.querySelector('#btnCamera');
 		let btnSpeech = document.querySelector('#btnSpeech');
 		let btnGeolocation = document.querySelector('#btnGeolocation');
+		let btnContact = document.querySelector('#btnContact');
 		
 		mui.plusReady(function () {
 			
@@ -108,6 +109,11 @@
 			btnGeolocation.onclick = ()=>{
 				let pageWebView =  plus.webview.create( 'view/map.html', 'page_map');
 				plus.webview.show( 'page_map', 'slide-in-right');
+			}
+			
+			btnContact.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/contact.html', 'page_contact');
+				plus.webview.show( 'page_contact', 'slide-in-right');
 			}
 		   
 		});
