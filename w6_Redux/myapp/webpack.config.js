@@ -11,7 +11,8 @@ module.exports = {
 
     output:{
         path:path.resolve(__dirname,'./dist'),
-        filename:'js/[name].[hash:5].min.js'
+        filename:'js/[name].[hash:5].min.js',
+        // publicPath:'./'
     },
 
     devServer:{

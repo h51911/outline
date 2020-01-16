@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			body{padding:15px;}
+			.search-input{position:relative;}
+			.search-input i{position:absolute;top:4px;right:5px}
+		</style>
+	</head>
+
+	<body>
+		<div class="search-input">
+			<input type="search" id="search" />
+			<i class="mui-icon mui-icon-mic" id="btnSpeech"></i>
+		</div>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function () {
+			    let btnSpeech = document.querySelector('#btnSpeech');
+			    let search = document.querySelector('#search');
+				
+				btnSpeech.onclick = ()=>{
+					plus.speech.startRecognize( {
+						engine:'iFly',
+						nbest:3,
+						lang:'zh-henanese'
+					}, (result)=>{
+						console.log(result);// I miss you, But i miss you ,各个国家有各个国家的国歌
+						
+						search.value = result;
+					});
+				}
+			})
+		</script>
+	</body>
+
+</html>

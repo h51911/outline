@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<h1>DCloud平台H5+runtime接口调用</h1>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;" class="mui-navigate-right">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-camera"></i>
+				<div class="mui-media-body" id="btnCamera">
+					摄像头
+					<p class='mui-ellipsis'>拍照、录像、二维码...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-mic"></i>
+				<div class="mui-media-body" id="btnSpeech">
+					语音识别
+					<p class='mui-ellipsis'>语音转换文字...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-map"></i>
+				<div class="mui-media-body" id="btnGeolocation">
+					定位
+					<p class='mui-ellipsis'>地图、订餐、附近的人...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-contact"></i>
+				<div class="mui-media-body" id="btnContact">
+					通讯录
+					<p class='mui-ellipsis'>获取联系人，打电话，发短信...</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-spinner mui-spin"></i>
+				<div class="mui-media-body" id="btnFingerprint">
+					指纹
+					<p class='mui-ellipsis'>支付、解锁、打开</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-pengyouquan"></i>
+				<div class="mui-media-body" id="btnShare">
+					分享
+					<p class='mui-ellipsis'>分享到朋友圈、QQ空间、微博</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-weixin"></i>
+				<div class="mui-media-body" id="btnPayment">
+					支付
+					<p class='mui-ellipsis'>支付宝支付、微信支付</p>
+				</div>
+			</a>
+		</li>
+	</ul>
+	<script>
+		// document.addEventListener('plusready',()=>{
+		// 	
+		// });
+		// 
+		// mui = {
+		// 	plusReady(handle){
+		// 		document.addEventListener('plusready',handle);
+		// 	}
+		// }
+		
+		// 获取元素
+		let btnCamera = document.querySelector('#btnCamera');
+		let btnSpeech = document.querySelector('#btnSpeech');
+		let btnGeolocation = document.querySelector('#btnGeolocation');
+		let btnContact = document.querySelector('#btnContact');
+		let btnFingerprint = document.querySelector('#btnFingerprint');
+		let btnShare = document.querySelector('#btnShare');
+		let btnPayment = document.querySelector('#btnPayment');
+		
+		mui.plusReady(function () {
+			
+			btnCamera.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/camera.html', 'page_camera');
+				plus.webview.show( 'page_camera', 'slide-in-right');
+			}
+			
+			btnSpeech.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/speech.html', 'page_speech');
+				plus.webview.show( 'page_speech', 'slide-in-right');
+			}
+			
+			btnGeolocation.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/map.html', 'page_map');
+				plus.webview.show( 'page_map', 'slide-in-right');
+			}
+			
+			btnContact.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/contact.html', 'page_contact');
+				plus.webview.show( 'page_contact', 'slide-in-right');
+			}
+			
+			btnFingerprint.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/fingerprint.html', 'page_fingerprint');
+				plus.webview.show( 'page_fingerprint', 'slide-in-right');
+			}
+			
+			btnShare.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/share.html', 'page_share');
+				plus.webview.show( 'page_share', 'slide-in-right');
+			}
+			
+			btnPayment.onclick = ()=>{
+				let pageWebView =  plus.webview.create( 'view/payment.html', 'page_payment');
+				plus.webview.show( 'page_payment', 'slide-in-right');
+			}
+		   
+		});
+
+		
+		
+	</script>
+</body>
+</html>

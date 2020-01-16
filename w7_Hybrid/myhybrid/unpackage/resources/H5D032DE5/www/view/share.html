@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			html,body{width:100%;height:100%;background-color:#fff;}
+			body{margin:0;padding:10px;} 
+			.goods img{width:100%;}
+			.price span{color:#f00;}
+			.price span::before{
+				content:'￥'
+			}
+			.price del{margin-right:5px}
+			.price del::before{
+				content:'￥'
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="goods">
+			<img src="img/jingjing.png"/>
+			<h1>年底促销活动：不要998，也不要98，只要9.8把婧婧带回家</h1>
+			<p class="price">价格：<del>998.00</del><span>9.80</span></p>
+			<button class="mui-btn btnSysShare">系统分享</button>
+			<button class="mui-btn mui-btn-success btnShare">分享</button>
+		</div>
+		
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			let btnSysShare = document.querySelector('.btnSysShare')
+			let btnShare = document.querySelector('.btnShare')
+			mui.plusReady(function () {
+				let msg = {
+					type:'text',
+					href:"http://www.baidu.com",
+					title:'千锋花姑娘',
+					content:"千锋姐妹花",
+					pictures:["img/jingjing.png","img/g1.jpg"]
+				}
+				
+				// 普通分享
+				btnShare.onclick = ()=>{
+					plus.share.getServices((services)=>{
+						console.log('services:',services);
+						
+						let buttons = services.map(item=>{
+							return {title:item.description}
+						})
+						
+						// 显示分享菜单
+						plus.nativeUI.actionSheet({
+							title:'分享到',
+							cancel:'取消',
+							buttons
+						}, (e)=>{
+							console.log(e.index);
+							let idx = e.index;
+							if(idx>0){
+								// 获取选中的分享服务对象
+								let currentService = services[idx-1];
+								
+								
+								// 判断当前服务对象是否已认证
+								if(!currentService.authenticated){
+									currentService.authorize(()=>{
+										// 认证成功,然乎分享
+										currentService.send(msg,()=>{
+											//分享成功
+										},()=>{
+											//分享失败
+										})
+									},()=>{
+										// 认证失败
+									})
+								}else{
+									// 分享
+									
+									currentService.send(msg,()=>{
+										//分享成功
+									},()=>{
+										//分享失败
+									})
+								}
+							}
+							
+						});
+					},(err)=>{
+						
+					});
+				}
+				
+				// 系统分享
+				btnSysShare.onclick = ()=>{
+					plus.share.sendWithSystem(msg, ()=>{
+						plus.nativeUI.toast('分享成功')
+					}, (err)=>{
+						plus.nativeUI.alert('分享失败')
+					})
+				}
+			})
+		</script>
+	</body>
+
+</html>

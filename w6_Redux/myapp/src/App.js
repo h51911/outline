@@ -73,6 +73,21 @@ class App extends Component {
     goto(path){
         this.props.history.push(path)
     }
+    // speech(){
+        // h5+runtime的代码
+        // if(window.plus){
+            // plus.speech.startRecognize( {
+            //     engine:'iFly',
+            //     nbest:3,
+            //     lang:'zh-henanese'
+            // }, (result)=>{
+            //     console.log(result);// I miss you, But i miss you ,各个国家有各个国家的国歌
+                
+            //     search.value = result;
+            // });
+
+        // }
+    // }
     componentDidMount(){
         console.log(this.props.location.pathname)
         this.setState({
@@ -141,6 +156,7 @@ class App extends Component {
                     >注册</Button>
                 </Col>
             </Row>
+            {/* <input type="search" onClick={this.speech}/> */}
             <Suspense fallback={<div>loading...</div>}>
                 <Switch>
                     {/* 路由配置,当浏览器路径匹配path时,渲染component组件 */}
