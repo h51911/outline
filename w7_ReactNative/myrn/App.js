@@ -29,6 +29,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Home from './components/Home'
+import RNE from './components/Rnelement'
+
 const App: () => React$Node = () => {
   console.log(123)
   function onChangeText(text){
@@ -47,8 +50,8 @@ const App: () => React$Node = () => {
   return (
     <>
           <Header />
-          <Text style={{fontSize:30,color:'#f00'}}>Hello laoxie！！！</Text>
-          <View>
+          <Text style={{fontSize:30,color:'#f00'}}>Hello laoxie</Text>
+          <View style={styles.body}>
             <Text style={{fontSize:30,color:'#58bc58'}}>Hello jingjing</Text>
             <Image
               style={{width: 50, height: 50}}
@@ -63,6 +66,10 @@ const App: () => React$Node = () => {
           <Button title={"改变数量"+qty} onPress={()=>{
             changeQty(qty+1);
           }}/>
+
+          <Home/>
+
+          <RNE/>
     </>
   );
 };
